@@ -1,3 +1,4 @@
+
 // Test JavaScript Skill 2 Level 2.2
 // 1. API
 // 2. URL Parameter
@@ -16,7 +17,7 @@ function createPenElement(pen) {
 
   const penLink = document.createElement("a");
   penLink.classList.add("pen-link");
-  penLink.href = `/pages/detail/?id=${pen.id}`;
+  penLink.href =`/pages/detail/?id=${pen.id}`;
   penLink.appendChild(penColorDiv);
   penLink.appendChild(penNameP);
 
@@ -26,26 +27,54 @@ function createPenElement(pen) {
 }
 
 function getAllPens() {
-  // Fetch pen colors from API
-  //1. API : Replace pens data by fetching from API
-  let pens = [
-    { id: 1, name: "Pen 1", color: "red" },
-    { id: 2, name: "Pen 2", color: "blue" },
-    { id: 3, name: "Pen 3", color: "black" },
-    { id: 4, name: "Pen 4", color: "red" },
-    { id: 5, name: "Pen 5", color: "blue" },
-    { id: 6, name: "Pen 6", color: "black" },
-    { id: 7, name: "Pen 7", color: "red" },
-    { id: 8, name: "Pen 8", color: "blue" },
-    { id: 9, name: "Pen 9", color: "black" },
-  ];
+
+  fetch("https://pens-api.vercel.app/api/pens")
+  .then((response) => {
+    return response.json();
+  })
+  .then((pens) => {
+   
 
   const penListDiv = document.getElementById("pen-list");
 
   pens.forEach((pen) => {
     const penElement = createPenElement(pen);
     penListDiv.appendChild(penElement);
-  });
+  });   })
+
+
+.then((error) => {
+  console.error("error:", error);
+});
+return getAllPens;
 }
 
+
+
 getAllPens();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
